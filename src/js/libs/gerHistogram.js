@@ -1,9 +1,11 @@
-export function gerHistogram(interval, obj, initValue, finalValue){
-    obj.intervalValue = (finalValue - initValue)/ interval;
-    for(var i=0; i< interval; i++){
+export function gerHistogram(intervals, obj, initValue, finalValue){
+    var deltaX = (finalValue - initValue)/ intervals;
+
+    for(var i=0; i < intervals; i++){
         obj.arrayIntervals.push({
-            "indexOfInterval":obj.intervalValue*i + initValue,
+            "indexOfInterval":deltaX*i + initValue,
             "count":0
         });
-    }    
+    }
+      
 }
