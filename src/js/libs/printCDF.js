@@ -1,4 +1,6 @@
 export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
+    cdfGraphic.innerHTML = '';
+
     var options2 = {
         chart: {
             type: 'line',
@@ -9,6 +11,7 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
             colors:'#0Ab68b'
         },
         series: [{
+            name: 'probabilidade de ser menor que',
             data: probsOfCDF
         }],
         fill: {
@@ -30,7 +33,7 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
             max: 1
         },
     }
-    cdfGraphic.innerHTML = ''
+    
     var chart2 = new ApexCharts(cdfGraphic, options2)
     chart2.render();
 }

@@ -27,9 +27,10 @@ refreshGraph.addEventListener('click', (e) =>{
 });
 
 function renderAllGraphics(){
+  
   randomVariable=[];
   cdfData=[];
-
+  
   var objHistogram = {
     "qtdOfIntervals":0,
     "arrayIntervals":[]
@@ -42,20 +43,26 @@ function renderAllGraphics(){
   const intervals = parseFloat(form.querySelector('#intervals').value);
   const typeOfVariable = form.querySelector("input:checked");
   
-
   switch(typeOfVariable.value){
     case "uniform":
-      gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
-      break;
+    gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
+    gerHistogram(intervals, objHistogram, initialValue, finalValue);
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+    break;
+
     case "exponential":
-      randomVariable = gerExpVariable(3, qtdOfVariables);
-      break;
+    const lambda = parseFloat(form.querySelector("#lambda").value);
+    var finalVal = -((1/lambda)*(Math.log(1-0.9995)));
+    randomVariable = gerExpVariable(lambda, qtdOfVariables);
+    gerHistogram(intervals, objHistogram, initialValue, finalVal);
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, initialValue, finalVal,qtdOfVariables);
+    break;
+    break;
     default:
   }
-
-  gerHistogram(intervals, objHistogram, initialValue, finalValue);
-  fillHistogram(randomVariable, objHistogram);
-  cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+  
   
   var valuesOfAxixsX = []; 
   var count = [];
@@ -72,15 +79,15 @@ function renderAllGraphics(){
     
     cdfData.forEach(e => {
       valuesOfAxixsXonCDF.push(`
-      ${e.indexOfInterval.toFixed(1)}`);
-
+      ${e.indexOfInterval.toFixed(2)}`);
+      
       countOfCDF.push(e.prob.toFixed(4));
     });
-
+    
     printHistogram(count, valuesOfAxixsX, histogramGraphic);
-
+    
     printCDF(countOfCDF,valuesOfAxixsXonCDF,cdfGraphic);
-
+    
   },0);
   
 }

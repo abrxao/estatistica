@@ -1,8 +1,11 @@
 export function gerCDF(AleatoryVar, cdfData, initValue, finalValue, qtdOfVariables){
     cdfData = [];
-    var deltaX = (finalValue - initValue)/16;
+
+    var intervals = 20;
+
+    var deltaX = (finalValue - initValue)/intervals;
     
-    for(var i = 0; i < 16; i++){
+    for(var i = 0; i < intervals; i++){
         cdfData.push({
             "indexOfInterval": ((deltaX * (i+1)) + initValue),
             "count": 0,
@@ -10,7 +13,7 @@ export function gerCDF(AleatoryVar, cdfData, initValue, finalValue, qtdOfVariabl
         })
     }
     for(i in AleatoryVar){
-        for(var j = 15; j >= 0; j--){            
+        for(var j = intervals-1; j >= 0; j--){            
             if(AleatoryVar[i] > cdfData[j].indexOfInterval - deltaX){
                 cdfData[j].count++;
                 break;

@@ -1,6 +1,7 @@
 export function printHistogram(probsOfIntervals, valuesOfAxixsX, graphicArea ){
   var maxProb = probsOfIntervals[0];
-  
+  graphicArea.innerHTML = '';
+
   for(var x of probsOfIntervals) {
     if(x > maxProb) {
       maxProb = x;
@@ -19,6 +20,9 @@ export function printHistogram(probsOfIntervals, valuesOfAxixsX, graphicArea ){
             columnWidth: '85%',
           }
         },
+        dataLabels: {
+          enabled: false
+        },
         series: [{
           data: probsOfIntervals
         }],
@@ -32,7 +36,6 @@ export function printHistogram(probsOfIntervals, valuesOfAxixsX, graphicArea ){
         colors: ['#208174', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
       }
       
-      graphicArea.innerHTML= '';
       var chart = new ApexCharts(graphicArea, options);
       chart.render();
       
