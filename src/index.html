@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src = 'https://cdn.jsdelivr.net/npm/apexcharts'></script>
+</head>
+<body>
+    <section class="main-section">
+        <div class="parametersInput">
+            <form action="" class="inputs">
+                <fieldset>
+                    <legend>Escolha a variavel aleatoria que deseja gerar:</legend>
+                
+                    <div>
+                      <input type="radio" id="uniform" name="drone" value="uniform"
+                             >
+                      <label for="uniform">Uniforme</label>
+                    </div>
+                
+                    <div>
+                      <input type="radio" id="exponential" name="drone" value="exponential" checked>
+                      <label for="exponential" >Exponencial</label>
+                    </div>
+
+                </fieldset>
+
+                <label for="initialValue">Valor Inicial</label>
+                <input type="number" id="initialValue" value="0">
+
+                <label for="finalValue">Valor Final</label>
+                <input type="number" id="finalValue" value="1">
+
+                <label for="qtdOfVariables">Qtd. de variaveis</label>
+                <input type="number" id="qtdOfVariables" value="1000">
+                
+                <label for="intervals">Intervalos do Histograma</label>
+                <input type="number" id="intervals" value="8">
+
+                <div class="changeFormArea">
+                    
+                </div>
+
+                <button type="submit" id="refreshGraph">Atualizar</button>
+            </form>
+        </div>
+        <div class="graphArea">
+            
+        </div>
+        <div class="cdfGraphic">
+            
+        </div>
+        <div class="varianceAndAverage">
+            <div id="variance"></div>
+            <div id="average"></div>
+        </div>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+:root{
+    --darkGreen: #208174;
+    --mediumGreen: #0Ab68b;
+    --lightGreen: #92de8b;
+    --yellow: #ffe3b3;
+}
+
+
+form.inputs{
+    display: flex;
+    flex-direction: column;
+    input{
+        margin-bottom: 10px;
+    }
+    fieldset{
+        margin-bottom: 10px;
+    }
+}
+
+.main-section{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
+}
