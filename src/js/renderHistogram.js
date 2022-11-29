@@ -6,6 +6,9 @@ import {gerCDF} from './libs/gerCDF';
 import { printCDF } from './libs/printCDF';
 import { printHistogram } from './libs/printHistogram';
 import {gerExpVariable} from './libs/gerExpVariable';
+import { gerGausVariable } from './libs/gerGausVariable';
+
+gerGausVariable();
 
 var randomVariable = [];
 var cdfData;
@@ -59,6 +62,20 @@ function renderAllGraphics(){
       fillHistogram(randomVariable, objHistogram);
       cdfData = gerCDF(randomVariable, cdfData, 0, finalVal,qtdOfVariables);
     break;
+
+    case "gaussiana":
+      const variance2 = parseFloat(form.querySelector("#variance").value);
+      const average2 = parseFloat(form.querySelector("#average").value);
+
+      var aux = gerGausVariable(average2, variance2,qtdOfVariables);
+
+      randomVariable = aux.array;
+      gerHistogram(intervals, objHistogram, aux.minValue , aux.maxValue);
+
+      fillHistogram(randomVariable, objHistogram);
+      cdfData = gerCDF(randomVariable, cdfData, aux.minValue , aux.maxValue,qtdOfVariables);
+    break;
+
     default:
   }
 
