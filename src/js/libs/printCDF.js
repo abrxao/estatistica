@@ -4,6 +4,7 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
     var options2 = {
         chart: {
             type: 'line',
+            redrawOnWindowResize: false
         },
         stroke: {
             curve: 'straight',

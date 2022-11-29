@@ -1,7 +1,7 @@
 export function gerCDF(AleatoryVar, cdfData, initValue, finalValue, qtdOfVariables){
     cdfData = [];
 
-    var intervals = 20;
+    var intervals = 100;
 
     var deltaX = (finalValue - initValue)/intervals;
     

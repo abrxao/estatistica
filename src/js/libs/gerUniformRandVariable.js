@@ -1,12 +1,24 @@
-export function gerUniformRandVariable(emptyArray, initValue, finalValue, qtdOfVariables) {
-    var range = finalValue - initValue;
-    var seed = (new Date().getMilliseconds()) % range;
-    emptyArray.push(seed);
-    
-    var a = range%2 == 0 ? 5: new Date().getMilliseconds();
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
-    for (var i = 0; i < qtdOfVariables-1; i++) {
-        seed = ((a * seed  + range/qtdOfVariables) % range)+initValue;
-        emptyArray.push(seed);
+export function gerUniformRandVariable(emptyArray, initValue, finalValue, qtdOfVariables) {
+
+    var range = finalValue - initValue;
+    var mod = 10000000000;
+    var seed = getRandomInt(0, mod);
+
+    emptyArray.push(seed/mod);
+    
+    var a = getRandomInt(0, mod - 100);
+    var c = getRandomInt(0, mod - 10000);
+
+    for (var i = 0; i < qtdOfVariables; i++) {
+
+        seed = ((a * seed  + c) % mod);
+
+        emptyArray.push(((seed*range)/mod)+initValue);
     }
 }

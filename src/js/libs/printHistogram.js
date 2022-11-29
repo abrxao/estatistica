@@ -7,11 +7,11 @@ export function printHistogram(probsOfIntervals, valuesOfAxixsX, graphicArea ){
       maxProb = x;
     }
   }
-  console.log(maxProb);
 
   var options = {
         chart: {
           type: 'histogram',
+          redrawOnParentResize: false
         },
         plotOptions: {
           bar: {

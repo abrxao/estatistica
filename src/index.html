@@ -16,25 +16,26 @@
                 
                     <div>
                       <input type="radio" id="uniform" name="drone" value="uniform"
-                             >
+                      checked>
                       <label for="uniform">Uniforme</label>
                     </div>
                 
                     <div>
-                      <input type="radio" id="exponential" name="drone" value="exponential" checked>
+                      <input type="radio" id="exponential" name="drone" value="exponential" >
                       <label for="exponential" >Exponencial</label>
                     </div>
 
                 </fieldset>
+                <div class="uniformInputArea">
+                    <label for="initialValue">Valor Inicial</label>
+                    <input type="number" id="initialValue" value="1">
 
-                <label for="initialValue">Valor Inicial</label>
-                <input type="number" id="initialValue" value="0">
-
-                <label for="finalValue">Valor Final</label>
-                <input type="number" id="finalValue" value="1">
-
+                    <label for="finalValue">Valor Final</label>
+                    <input type="number" id="finalValue" value="4">    
+                </div>
+                
                 <label for="qtdOfVariables">Qtd. de variaveis</label>
-                <input type="number" id="qtdOfVariables" value="1000">
+                <input type="number" id="qtdOfVariables" value="10000">
                 
                 <label for="intervals">Intervalos do Histograma</label>
                 <input type="number" id="intervals" value="8">

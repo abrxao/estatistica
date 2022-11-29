@@ -45,25 +45,23 @@ function renderAllGraphics(){
   
   switch(typeOfVariable.value){
     case "uniform":
-    gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
-    gerHistogram(intervals, objHistogram, initialValue, finalValue);
-    fillHistogram(randomVariable, objHistogram);
-    cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+      gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
+      gerHistogram(intervals, objHistogram, initialValue, finalValue);
+      fillHistogram(randomVariable, objHistogram);
+      cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
     break;
 
     case "exponential":
-    const lambda = parseFloat(form.querySelector("#lambda").value);
-    var finalVal = -((1/lambda)*(Math.log(1-0.9995)));
-    randomVariable = gerExpVariable(lambda, qtdOfVariables);
-    gerHistogram(intervals, objHistogram, initialValue, finalVal);
-    fillHistogram(randomVariable, objHistogram);
-    cdfData = gerCDF(randomVariable, cdfData, initialValue, finalVal,qtdOfVariables);
-    break;
+      const lambda = parseFloat(form.querySelector("#lambda").value);
+      var finalVal = -((1/lambda)*(Math.log(1-0.99954)));
+      randomVariable = gerExpVariable(lambda, qtdOfVariables);
+      gerHistogram(intervals, objHistogram, 0, finalVal);
+      fillHistogram(randomVariable, objHistogram);
+      cdfData = gerCDF(randomVariable, cdfData, 0, finalVal,qtdOfVariables);
     break;
     default:
   }
-  
-  
+
   var valuesOfAxixsX = []; 
   var count = [];
   var valuesOfAxixsXonCDF = [initialValue];
