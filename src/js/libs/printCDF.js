@@ -27,6 +27,7 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
             },
         },
         xaxis: {
+            tickAmount: 12,
             categories:valuesOfAxixsXonCDF,
         },yaxis:{
             tickAmount: 8,

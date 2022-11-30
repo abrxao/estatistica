@@ -7,8 +7,7 @@ import { printCDF } from './libs/printCDF';
 import { printHistogram } from './libs/printHistogram';
 import {gerExpVariable} from './libs/gerExpVariable';
 import { gerGausVariable } from './libs/gerGausVariable';
-
-gerGausVariable();
+import {gerWeibullVariable} from './libs/gerWeibullVariable';
 
 var randomVariable = [];
 var cdfData;
@@ -52,6 +51,16 @@ function renderAllGraphics(){
       gerHistogram(intervals, objHistogram, initialValue, finalValue);
       fillHistogram(randomVariable, objHistogram);
       cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+    break;
+
+    case "weibull":
+      const lambdaW = parseFloat(document.querySelector('#lambdaW').value);
+      const betaW = parseFloat(document.querySelector('#betaW').value);
+      var minMax = gerWeibullVariable(randomVariable, lambdaW, betaW, qtdOfVariables);
+      gerHistogram(intervals, objHistogram, (minMax.min*0.40), (minMax.max*1.30));
+      fillHistogram(randomVariable, objHistogram);
+      cdfData = gerCDF(randomVariable, cdfData, (minMax.min*0.93), (minMax.max*1.07) ,qtdOfVariables);
+      console.log(cdfData);
     break;
 
     case "exponential":

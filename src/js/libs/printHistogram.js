@@ -27,6 +27,7 @@ export function printHistogram(probsOfIntervals, valuesOfAxixsX, graphicArea ){
           data: probsOfIntervals
         }],
         xaxis: {
+          tickAmount: 10,
           categories:valuesOfAxixsX,
         },yaxis:{
           tickAmount: 4,
