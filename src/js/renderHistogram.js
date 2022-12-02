@@ -57,10 +57,9 @@ function renderAllGraphics(){
       const lambdaW = parseFloat(document.querySelector('#lambdaW').value);
       const betaW = parseFloat(document.querySelector('#betaW').value);
       var minMax = gerWeibullVariable(randomVariable, lambdaW, betaW, qtdOfVariables);
-      gerHistogram(intervals, objHistogram, (minMax.min*0.40), (minMax.max*1.30));
+      gerHistogram(intervals, objHistogram, (minMax.min*0.40), (minMax.max));
       fillHistogram(randomVariable, objHistogram);
-      cdfData = gerCDF(randomVariable, cdfData, (minMax.min*0.93), (minMax.max*1.07) ,qtdOfVariables);
-      console.log(cdfData);
+      cdfData = gerCDF(randomVariable, cdfData, (minMax.min*0.98), (minMax.max*1.01) ,qtdOfVariables);
     break;
 
     case "exponential":
