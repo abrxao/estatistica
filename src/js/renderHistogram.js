@@ -16,7 +16,9 @@ const refreshGraph = document.querySelector('#refreshGraph');
 const histogramGraphic = document.querySelector('.graphArea');
 const cdfGraphic = document.querySelector('.cdfGraphic');
 
-renderAllGraphics();
+if(renderAllGraphics()){
+  average(randomVariable);
+};
 
 refreshGraph.addEventListener('click', (e) =>{
   
@@ -38,7 +40,9 @@ function renderAllGraphics(){
     "arrayIntervals":[]
   }
   
-  const form  = document.querySelector('form.inputs');
+  var valuesOfAxixsXonCDF = [];
+
+  const form  = document.querySelector('form');
   const initialValue = parseFloat(form.querySelector('#initialValue').value);
   const finalValue = parseFloat(form.querySelector('#finalValue').value);
   const qtdOfVariables = parseFloat(form.querySelector('#qtdOfVariables').value);
@@ -47,52 +51,57 @@ function renderAllGraphics(){
   
   switch(typeOfVariable.value){
     case "uniform":
-      gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
-      gerHistogram(intervals, objHistogram, initialValue, finalValue);
-      fillHistogram(randomVariable, objHistogram);
-      cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+    gerUniformRandVariable(randomVariable, initialValue, finalValue, qtdOfVariables);
+    gerHistogram(intervals, objHistogram, initialValue, finalValue);
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, initialValue, finalValue,qtdOfVariables);
+    valuesOfAxixsXonCDF = [initialValue];
     break;
-
+    
     case "weibull":
-      const lambdaW = parseFloat(document.querySelector('#lambdaW').value);
-      const betaW = parseFloat(document.querySelector('#betaW').value);
-      var minMax = gerWeibullVariable(randomVariable, lambdaW, betaW, qtdOfVariables);
-      gerHistogram(intervals, objHistogram, (minMax.min*0.40), (minMax.max));
-      fillHistogram(randomVariable, objHistogram);
-      cdfData = gerCDF(randomVariable, cdfData, (minMax.min*0.98), (minMax.max*1.01) ,qtdOfVariables);
+    const lambdaW = parseFloat(document.querySelector('#lambdaW').value);
+    const betaW = parseFloat(document.querySelector('#betaW').value);
+    var minMax = gerWeibullVariable(randomVariable, lambdaW, betaW, qtdOfVariables);
+    gerHistogram(intervals, objHistogram, (minMax.min*0.40), (minMax.max));
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, (minMax.min*0.98), (minMax.max*1.01) ,qtdOfVariables);
+    valuesOfAxixsXonCDF = [minMax.min*0.98];
     break;
-
+    
     case "exponential":
-      const lambda = parseFloat(form.querySelector("#lambda").value);
-      var finalVal = -((1/lambda)*(Math.log(1-0.99954)));
-      randomVariable = gerExpVariable(lambda, qtdOfVariables);
-      gerHistogram(intervals, objHistogram, 0, finalVal);
-      fillHistogram(randomVariable, objHistogram);
-      cdfData = gerCDF(randomVariable, cdfData, 0, finalVal,qtdOfVariables);
+    const lambda = parseFloat(form.querySelector("#lambda").value);
+    var finalVal = -((1/lambda)*(Math.log(1-0.99954)));
+    randomVariable = gerExpVariable(lambda, qtdOfVariables);
+    gerHistogram(intervals, objHistogram, 0, finalVal);
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, 0, finalVal,qtdOfVariables);
+    valuesOfAxixsXonCDF = [0]
     break;
-
+    
     case "gaussiana":
-      const variance2 = parseFloat(form.querySelector("#variance").value);
-      const average2 = parseFloat(form.querySelector("#average").value);
-
-      var aux = gerGausVariable(average2, variance2,qtdOfVariables);
-
-      randomVariable = aux.array;
-      gerHistogram(intervals, objHistogram, aux.minValue , aux.maxValue);
-
-      fillHistogram(randomVariable, objHistogram);
-      cdfData = gerCDF(randomVariable, cdfData, aux.minValue , aux.maxValue,qtdOfVariables);
+    const variance2 = parseFloat(form.querySelector("#variance").value);
+    const average2 = parseFloat(form.querySelector("#average").value);
+    
+    var aux = gerGausVariable(average2, variance2,qtdOfVariables);
+    
+    randomVariable = aux.array;
+    gerHistogram(intervals, objHistogram, aux.minValue , aux.maxValue);
+    
+    fillHistogram(randomVariable, objHistogram);
+    cdfData = gerCDF(randomVariable, cdfData, aux.minValue , aux.maxValue,qtdOfVariables);
+    valuesOfAxixsXonCDF = [aux.minValue]
     break;
-
+    
     default:
+      return true;
   }
+ 
+  setTimeout(() =>{
+    var valuesOfAxixsX = []; 
+    var count = [];
+    
+    var countOfCDF = [0];
 
-  var valuesOfAxixsX = []; 
-  var count = [];
-  var valuesOfAxixsXonCDF = [initialValue];
-  var countOfCDF = [0];
-  
-  setTimeout(() =>{    
     objHistogram.arrayIntervals.forEach(e => {
       valuesOfAxixsX.push(`
       ${e.indexOfInterval.toFixed(2).toString()} -
@@ -111,7 +120,11 @@ function renderAllGraphics(){
     
     printCDF(countOfCDF,valuesOfAxixsXonCDF,cdfGraphic);
     
+    console.log(cdfData.indexOfIntervals);
+
   },0);
+  
+  return true;
   
 }
 

@@ -4,22 +4,34 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
     var options2 = {
         chart: {
             type: 'line',
-            redrawOnWindowResize: false
+            height: window.innerWidth < 768 ? '300':'auto'  
+        },
+        title: {
+            text: 'Cumulativa de probabilidade',
+            align: 'center',
+            margin: 10,
+            floating: false,
+            style: {
+              fontSize:  '20px',
+              fontWeight:  'bold',
+              fontFamily:  'Raleway',
+              color:  '#e9eef4'
+            },
         },
         stroke: {
             curve: 'straight',
             lineCap: 'round',
-            colors:'#0Ab68b'
+            colors:'#dd9f82'
         },
         series: [{
-            name: 'probabilidade de ser menor que',
+            name: 'Probabilidade',
             data: probsOfCDF
         }],
         fill: {
             type: 'gradient',
             gradient: {
                 shade: 'dark',
-                gradientToColors: ['#92de8b','#208174'],
+                gradientToColors: ['#e65c4f'],
                 shadeIntensity: 1,
                 type: 'vertical',
                 opacityFrom: 1,
@@ -27,12 +39,25 @@ export function printCDF(probsOfCDF, valuesOfAxixsXonCDF, cdfGraphic){
             },
         },
         xaxis: {
-            tickAmount: 12,
+            type: 'probabilidade de ser menor que',
+            tickAmount: window.innerWidth < 768 ? 8:12,
             categories:valuesOfAxixsXonCDF,
+            labels:{
+                style: {
+                  colors: '#e9eef4'  
+                }
+                
+            }
         },yaxis:{
             tickAmount: 8,
             min:0,
-            max: 1
+            max: 1,
+            labels:{
+                style: {
+                  colors: '#e9eef4'  
+                }
+                
+            }
         },
     }
     

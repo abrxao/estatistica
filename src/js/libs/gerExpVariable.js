@@ -4,13 +4,13 @@ export function gerExpVariable(lambda, qtdOfVariables){
     var a = [];
     gerUniformRandVariable(a,0,1,qtdOfVariables);
     
-    var b = [];
+    var expArray = [];
     
     for(var i = 0; i < qtdOfVariables; i++){
-        b.push(-((1/lambda)*(Math.log(1-a[i]))));
+        expArray.push(-((1/lambda)*(Math.log(1-a[i]))));
     }
 
-    return b;
+    return expArray;
 }
 
 

@@ -12,7 +12,8 @@ export function average(randomVar){
     const averageBlock = document.querySelector('.average');
     const varianceBlock = document.querySelector('.variance');
 
-    averageBlock.innerHTML = `media é ${(sum/randomVar.length).toFixed(3)}`;
+    averageBlock.innerHTML = `
+    <p> Media <br> <strong>${(sum/randomVar.length).toFixed(3).toString().replace(".", ",")}</strong></p>`;
 
-    varianceBlock.innerHTML = `a variancia é ${(variance/randomVar.length)}`
+    varianceBlock.innerHTML = `<p> Variancia<br> <strong>${(variance/randomVar.length).toFixed(3).toString().replace(".", ",")}</strong></p>`
 }

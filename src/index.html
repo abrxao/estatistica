@@ -4,87 +4,141 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <script src = 'https://cdn.jsdelivr.net/npm/apexcharts'></script>
+    <link rel="icon" href="./assets/icons/favicon.png">
+    <title>Variavaveis Aleatorias</title>
+    
 </head>
 <body>
     <section class="main-section">
-        <div class="parametersInput">
-            <form action="" class="inputs">
-                <fieldset>
-                    <legend>Escolha a variavel aleatoria que deseja gerar:</legend>
-                    
-                    <div>
-                        <input type="radio" id="uniform" name="drone" value="uniform"
-                        >
-                        <label for="uniform">Uniforme</label>
+        
+        <form>
+            <div class="parametersInput">
+                <div class="allInputs">
+                    <div class="fieldsetParemeters">
+                        
+                        <h3>Escolha a variavel aleatoria que deseja gerar:</h3>
+                        
+                        <div>
+                            <input type="radio" id="uniform" name="drone" value="uniform"
+                            checked>
+                            <label for="uniform">Uniforme</label>
+                            
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="weibull" name="drone" value="weibull" >
+                            <label for="weibull" >Weibull</label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="exponential" name="drone" value="exponential" >
+                            <label for="exponential" >Exponencial</label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="gaussiana" name="drone" value="gaussiana">
+                            <label for="gaussiana" >Gaussiana</label>
+                        </div>
                     </div>
                     
-                    <div>
-                        <input type="radio" id="weibull" name="drone" value="weibull" checked>
-                        <label for="weibull" >Weibull</label>
+                    <div class="containerOfInputs">
+                        
+                        <div class="histogramInputs">
+                            <label for="qtdOfVariables">Qtd. de variaveis</label>
+                            <input type="number" id="qtdOfVariables" value="10000">
+                            
+                            <label for="intervals">Intervalos do Histograma</label>
+                            <input type="number" id="intervals" value="16">
+                        </div>
+                        
+                        <div class="gaussianaInputArea">
+                            <div class="inputs">
+                                <label for="average">Média</label>
+                                <input type="number" id="average" value="6">
+                                
+                                <label for="variance">Variancia</label>
+                                <input type="number" id="variance" value="4">
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <div class="exponentialInputArea">
+                            <div class="inputs">
+                                <label for="lambda">Valor de λ</label>
+                                <input type="number" id="lambda" value="3"> 
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
+                        <div class="weibullInputArea">
+                            <div class="inputs">
+                                <label for="lambdaW">Valor de λ</label>
+                                <input type="number" id="lambdaW" value="1">
+                                
+                                <label for="betaW">Valor de β</label>
+                                <input type="number" id="betaW" value="0.5">
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
+                        <div class="uniformInputArea">
+                            <div class="inputs">
+                                <label for="initialValue">Valor Inicial</label>
+                                <input type="number" id="initialValue" value="4">
+                                
+                                <label for="finalValue">Valor Final</label>
+                                <input type="number" id="finalValue" value="12">      
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
                     </div>
 
-                    <div>
-                        <input type="radio" id="exponential" name="drone" value="exponential" >
-                        <label for="exponential" >Exponencial</label>
-                    </div>
+                    <button type="submit" id="refreshGraph">Atualizar</button>
                     
-                    <div>
-                        <input type="radio" id="gaussiana" name="drone" value="gaussiana">
-                        <label for="gaussiana" >Gaussiana</label>
-                    </div>
-                    
-                </fieldset>
-                <div class="gaussianaInputArea">
-                    <label for="average">Média</label>
-                    <input type="number" id="average" value="6">
-                    
-                    <label for="variance">Variancia</label>
-                    <input type="number" id="variance" value="4">    
                 </div>
                 
-                <div class="exponentialInputArea">
-                    <label for="lambda">Valor de λ</label>
-                    <input type="number" id="lambda" value="3">  
-                </div>
 
-                <div class="weibullInputArea">
-                    <label for="lambdaW">Valor de λ</label>
-                    <input type="number" id="lambdaW" value="1">
-
-                    <label for="betaW">Valor de β</label>
-                    <input type="number" id="betaW" value="0.5">  
-                </div>
-                
-                <div class="uniformInputArea">
-                    <label for="initialValue">Valor Inicial</label>
-                    <input type="number" id="initialValue" value="1">
+                <div class="explainParameters">
                     
-                    <label for="finalValue">Valor Final</label>
-                    <input type="number" id="finalValue" value="4">    
                 </div>
                 
-                <label for="qtdOfVariables">Qtd. de variaveis</label>
-                <input type="number" id="qtdOfVariables" value="10000">
                 
-                <label for="intervals">Intervalos do Histograma</label>
-                <input type="number" id="intervals" value="32">
-                
-                <button type="submit" id="refreshGraph">Atualizar</button>
-            </form>
-        </div>
-        <div class="graphArea">
+            </div>
             
-        </div>
-        <div class="cdfGraphic">
-            
-        </div>
-        <div class="varianceAndAverage">
-            <div class="variance"></div>
+        </form>
+
+        <div class="resultsArea">
+            <div class="varianceAndAverage">
+                <div class="variance"></div>
             <div class="average"></div>
+            </div>
+            
+            <div class="graphicArea">
+                <div class="graphArea">
+                </div> 
+            </div>
+            
+            <div class="graphicArea">
+                <div class="cdfGraphic">
+                </div>  
+            </div>
+            
         </div>
-    </section>
+        
+    </div>
     
+</section>
+
 </body>
+
+<script src = 'https://cdn.jsdelivr.net/npm/apexcharts'></script>
+
 </html>

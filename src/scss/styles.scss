@@ -1,26 +1,214 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,600&family=Raleway:wght@200;300;400;700&display=swap');
+
 :root{
-    --darkGreen: #208174;
-    --mediumGreen: #0Ab68b;
-    --lightGreen: #92de8b;
-    --yellow: #ffe3b3;
+    --darkColor: #2d2d2d;
+    --lightColor: #e9eef4;
+    --darkBlue: #326789;
+    --lightBlue: #78a6c8;
+    --orange: #e65c4f;
+}
+
+html *{
+    p{
+        font-size: 16px;
+    }
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--darkColor);
+    font-family: 'Raleway', 'Helvetica Neue';
 }
 
 
-form.inputs{
-    display: flex;
-    flex-direction: column;
-    input{
+
+input{
+    color:var(--darkColor)
+}
+
+body{
+    background-color: var(--darkBlue);
+}
+
+form{
+    width: 50%;
+    background-color: var(--lightColor);
+    padding: 30px;
+    border-radius: 20px;
+    input[type="number"]{
+        display: flex;
+        padding: 6px;
         margin-bottom: 10px;
+        &::-webkit-inner-spin-button,&::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+        }
     }
-    fieldset{
-        margin-bottom: 10px;
+    .histogramInputs{
+        display: flex;
+        flex-direction: column;
+        input{
+            width: 190px;
+            border: 0;
+            border-radius: 5px;
+            font-size: 16px;
+        }        
+    }
+    
+    
+    
+    button#refreshGraph {
+        border-radius: 10px;
+        width: 100%;
+        padding: 8px;
+        border: 0;
+        letter-spacing: 2px;
+        font-size: 20px;
+        background-color: var(--orange);
+        color: var(--lightColor);
+        cursor: pointer;
+        transition: .2s;
+        &:hover{
+            opacity: 0.85;
+            letter-spacing: 5px;
+        }
     }
 }
 
 .main-section{
     margin: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    max-width: 700px;
+    gap: 20px;
+    max-width: 1200px;
+    padding: .5%;
+
+    @media (max-width: 768px) {
+        padding: 10px;
+        flex-direction: column;
+        form{
+            height: auto;
+            width: 100%;
+        }
+        .resultsArea{
+            width: 100%;
+        }
+    }
 }
+
+.fieldsetParemeters{
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: (1fr, 2fr);
+    h3{
+        margin-bottom: 8px;
+    }
+    input{
+        cursor: pointer;
+    }
+}
+
+.parametersInput{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.containerOfInputs {
+    display: flex;
+    gap: 8px;
+    
+    .exponentialInputArea{
+        .inputs{
+            display: inline-block;
+            
+        }
+    }
+    
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        input{
+            font-size: 16px;
+            width: 100px;
+            border: 0;
+            border-radius: 5px;
+        }
+    }
+    
+}
+
+.explainParameters{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    p {
+        text-align: justify;
+        
+        code{
+            padding-left: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: var(--lightBlue);
+        }
+    }
+    
+}
+
+
+.resultsArea{
+    border-radius: 20px;
+    width: 50%;
+    background: var(--lightColor);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+    position: relative;
+    .varianceAndAverage{
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        left: 15px;
+        justify-content: space-between;
+        width: 100%;
+        z-index: 1;
+        p{
+            text-align: center;
+            font-size: 18px;
+        }
+        .variance{
+            width: 100%;
+            border-radius: 10px;
+            padding: 8px;
+            background-color: var(--orange);
+            p{  
+                color: var(--lightColor);
+                strong{
+                    font-size: 30px;
+                    color: var(--lightColor);
+                }
+            }
+            
+        }
+        .average{
+            width: 100%;
+            border-radius: 10px;
+            padding: 8px;
+            background-color: var(--orange);
+            p{
+                color: var(--lightColor);
+                strong{
+                    color: var(--lightColor);
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+    .graphicArea {
+        padding:20px 10px 0px 5px;
+        border-radius: 10px;
+        background-color: var(--darkBlue);
+    }
+}
+

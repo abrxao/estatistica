@@ -4,11 +4,11 @@ import { gerUniformRandVariable } from "./gerUniformRandVariable";
 export function gerGausVariable(average, variance, qtdOfVariables){
     var a = [];
     var b = [];
-    var c = [];
+    var gaus = [];
     var aux = 0;
     
     for(var i=0; i<12; i++){
-        b=[];
+        b = [];
         gerUniformRandVariable(b,0,1,qtdOfVariables);
         a.push(b);
     }
@@ -18,21 +18,22 @@ export function gerGausVariable(average, variance, qtdOfVariables){
         for(var i = 0; i<12; i++){
             aux += a[i][j];
         }
-        c.push(aux - 6);
+        gaus.push(aux - 6);
     }
-    var max = c[0];
-    var min = c[0];
+    var max = gaus[0];
+    var min = gaus[0];
+
     for(var i = 0; i < qtdOfVariables; i++){
-        c[i] = average + c[i]*Math.sqrt(variance);
-        if(c[i]>max){
-            max = c[i];
-        }else if(c[i]<min){
-            min = c[i];
+        gaus[i] = average + gaus[i]*Math.sqrt(variance);
+        if(gaus[i]>max){
+            max = gaus[i];
+        }else if(gaus[i]<min){
+            min = gaus[i];
         }
     }
 
     return {
-        "array": c,
+        "array": gaus,
         "maxValue": max,
         "minValue": min
     };

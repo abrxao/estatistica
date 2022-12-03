@@ -6,6 +6,7 @@ export function gerHistogram(intervals, obj, initValue, finalValue){
             "indexOfInterval":deltaX*i + initValue,
             "count":0
         });
+        
     }
       
 }
