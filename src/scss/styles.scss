@@ -81,7 +81,7 @@ form{
     gap: 20px;
     max-width: 1200px;
     padding: .5%;
-
+    
     @media (max-width: 768px) {
         padding: 10px;
         flex-direction: column;
@@ -95,6 +95,46 @@ form{
     }
 }
 
+.linksHistogram{
+    margin-left: 8px;
+    p{
+        font-size: 17px;
+    }
+    h4{
+        padding: 0;
+        margin-bottom: 4px;
+    }
+    a{  
+        position: relative;
+        text-decoration: none;
+        line-height: 35px;
+        margin-left: 6px;
+        background-color: var(--orange);
+        border-radius: 4px;
+        padding: 4px 12px;
+        padding-right: 32px;
+        color: var(--lightColor);
+        text-decoration: none;
+        transition: .2s all;
+        img{
+            margin-left: 3px;
+            position: absolute;
+            bottom: 4px;
+            width: 20px;
+        }
+        &:hover{
+            letter-spacing: 3px;
+        }
+    }
+    code{
+        padding-left: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        color: var(--lightBlue);
+    }
+    
+}
+
 .fieldsetParemeters{
     margin-bottom: 10px;
     display: grid;
@@ -104,6 +144,31 @@ form{
     }
     input{
         cursor: pointer;
+    }
+    label{
+        line-height: 36px;
+    }
+    div{
+        position: relative;
+        a{  
+            margin-left: 6px;
+            background-color: var(--orange);
+            border-radius: 4px;
+            padding: 4px 12px;
+            padding-right: 32px;
+            color: var(--lightColor);
+            text-decoration: none;
+            transition: .2s all;
+            img{
+                margin-left: 3px;
+                position: absolute;
+                bottom: 8px;
+                width: 20px;
+            }
+            &:hover{
+                letter-spacing: 3px;
+            }
+        }
     }
 }
 
